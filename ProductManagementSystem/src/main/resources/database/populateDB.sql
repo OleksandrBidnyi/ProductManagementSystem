@@ -12,7 +12,7 @@ INSERT INTO products VALUES
   (8, 'X9 mini','Doogee','Android phone',80),
   (9, 'M3 Note16Gb ','Meizu ','Android phone',210),
   (10,'M5 Note 16 Gb','Meizu ','Android phone',220);
-
+ 
 -- users
 INSERT INTO users VALUES
     /*original password for admin and user: '12345678' */
