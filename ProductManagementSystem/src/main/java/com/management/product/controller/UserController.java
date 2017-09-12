@@ -25,7 +25,7 @@ public class UserController {
     private final UserService userService;
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(/*String string*/) {
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(11);
     }
 
@@ -56,7 +56,7 @@ public class UserController {
             @RequestParam(value = "role", defaultValue = "USER") UserRole role,
             @RequestParam(value = "locked", defaultValue = "false") boolean isLocked
     ) {
-        User userToAdd = new User(username, passwordEncoder(/*password*/).encode(password), role);
+        User userToAdd = new User(username, passwordEncoder().encode(password), role);
         userToAdd.setLocked(isLocked);
         userService.add(userToAdd);
         return "redirect:/users";
@@ -88,8 +88,7 @@ public class UserController {
     ) {
         User user = userService.get(id);
         user.setUsername(username);
-        /*user.setPassword(password);*/
-        user.setPassword(passwordEncoder(/*password*/).encode(password));
+        user.setPassword(passwordEncoder().encode(password));
         user.setRole(role);
         user.setLocked(isLocked);
         userService.update(user);

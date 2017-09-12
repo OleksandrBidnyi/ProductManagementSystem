@@ -27,7 +27,7 @@ import java.util.List;
 @EnableWebSecurity
 @ComponentScan(basePackages = "com.management.product.service")
 @PropertySource("classpath:security.properties")
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${request.admin}")
     private String requestAdmin;
 
@@ -74,8 +74,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
                 .csrf().disable();
     }
-///////////////////////////////////////////////////////
-
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -86,6 +84,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(final AuthenticationManagerBuilder builder) throws Exception {
         builder.userDetailsService(this.userDetailsService).passwordEncoder(passwordEncoder());
     }
-
 
 }

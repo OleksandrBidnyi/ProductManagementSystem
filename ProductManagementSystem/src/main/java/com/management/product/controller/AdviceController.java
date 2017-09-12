@@ -41,7 +41,7 @@ public class AdviceController {
 
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE)
-    public ModelAndView IllegalArgumentExceprion(
+    public ModelAndView IllegalArgumentException(
             IllegalArgumentException ex,
             HttpServletRequest request) {
 
@@ -77,7 +77,7 @@ public class AdviceController {
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-    public ModelAndView Exceprion(
+    public ModelAndView Exception(
             Exception ex,
             HttpServletRequest request
     ) {
@@ -100,7 +100,7 @@ public class AdviceController {
         logRequest(request);
         logException(ex);
         return prepareModelAndView(status, ex.getClass().getSimpleName() +
-                ":" + ex.getMessage());
+                " : " + ex.getMessage());
     }
 
     private static void logException(Exception ex) {
@@ -110,7 +110,7 @@ public class AdviceController {
 
     private static void logRequest(final HttpServletRequest request) {
         if (request != null) {
-            logger.error(request.getRemoteAddr() + ":" +
+            logger.error(request.getRemoteAddr() + " : " +
                     request.getRequestURI());
         }
     }

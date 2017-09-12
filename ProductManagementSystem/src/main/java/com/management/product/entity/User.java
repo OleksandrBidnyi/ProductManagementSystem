@@ -42,7 +42,7 @@ public class User extends Model implements UserDetails {
     }
 
     public User(String username, String password) {
-        this.username = username;
+        this(username);
         setPassword(password);
     }
 
@@ -63,21 +63,19 @@ public class User extends Model implements UserDetails {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
+        if (!super.equals(o))
+            return false;
         User user = (User) o;
-
-        if (!username.equals(user.username)) return false;
-        if (!password.equals(user.password)) return false;
+        if (!username.equals(user.username))
+            return false;
+        if (!password.equals(user.password))
+            return false;
         return role == user.role;
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + username.hashCode();
+        int result = username.hashCode();
         result = 31 * result + password.hashCode();
         result = 31 * result + role.hashCode();
         return result;

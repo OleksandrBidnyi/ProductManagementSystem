@@ -101,6 +101,6 @@ public class ProductController {
     )
     public String deleteAllProducts(){
         productService.removeAll();
-        return "redirect:home";
+        return "redirect:/home";
     }
 }

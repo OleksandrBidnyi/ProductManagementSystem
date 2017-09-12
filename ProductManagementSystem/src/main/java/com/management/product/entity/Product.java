@@ -52,7 +52,7 @@ public class Product extends Model {
     @Override
     public String toString() {
         return "Product{" + super.toString() +
-                "title='" + this.title + '\'' +
+                ", title='" + this.title + '\'' +
                 ", manufacturer='" + this.manufacturer + '\'' +
                 ", description='" + this.description + '\'' +
                 ", cost=" + this.cost +
@@ -60,26 +60,24 @@ public class Product extends Model {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
-        Product product = (Product) o;
-
-        if (cost != product.cost) return false;
-        if (!title.equals(product.title)) return false;
-        if (!manufacturer.equals(product.manufacturer)) return false;
-        return description.equals(product.description);
+    public boolean equals(Object object) {
+        boolean res = super.equals(object);
+        if (res) {
+            final Product product = (Product) object;
+            res = (this.cost == product.cost) &&
+                    (this.title.equals(product.title)) &&
+                    (this.manufacturer.equals(product.manufacturer)) &&
+                    (this.description.equals(product.description));
+        }
+        return res;
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + title.hashCode();
-        result = 31 * result + manufacturer.hashCode();
-        result = 31 * result + description.hashCode();
-        result = 31 * result + cost;
+        int result = this.title.hashCode();
+        result = 31 * result + this.manufacturer.hashCode();
+        result = 31 * result + this.description.hashCode();
+        result = 31 * result + this.cost;
         return result;
     }
 

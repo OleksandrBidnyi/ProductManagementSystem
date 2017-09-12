@@ -8,13 +8,14 @@ import java.io.Serializable;
  */
 @MappedSuperclass
 public abstract class Model implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
     public long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(long id) {
@@ -22,19 +23,12 @@ public abstract class Model implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Model model = (Model) o;
-
-        return id == model.id;
+    public boolean equals(Object object) {
+        return (object != null) && (super.equals(object) || (getClass() == object.getClass()));
     }
 
     @Override
-    public int hashCode() {
-        return (int) (id ^ (id >>> 32));
-    }
+    public abstract int hashCode();
 
     @Override
     public String toString() {
